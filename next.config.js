@@ -12,7 +12,7 @@ if (isGithubActions) {
   // trim off `<owner>/`
   const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '');
 
-  assetPrefix = `/${repo}/Next-js-Blog-Boilerplate/`;
+  assetPrefix = `/${repo}/`;
   basePath = `/${repo}`;
 }
 
@@ -26,7 +26,7 @@ module.exports = withBundleAnalyzer({
   },
   images: {
     loader: 'akamai',
-    path: `./assets/images/posts/`,
+    path: `Next-js-Blog-Boilerplate/assets/images/posts/`,
   },
   // The starter code load resources from `public` folder with `router.basePath` in React components.
   // So, the source code is "basePath-ready".
