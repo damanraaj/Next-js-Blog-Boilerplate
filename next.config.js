@@ -3,31 +3,30 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const baseUrl = '';
-const isGithubActions = process.env.GITHUB_ACTIONS || false
+const isGithubActions = process.env.GITHUB_ACTIONS || false;
 
-let assetPrefix = ''
-let basePath = '/'
+let assetPrefix = '';
+let basePath = '/';
 
 if (isGithubActions) {
   // trim off `<owner>/`
-  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '');
 
-  assetPrefix = `/${repo}/`
-  basePath = `/${repo}`
+  assetPrefix = `/${repo}/`;
+  basePath = `/${repo}`;
 }
 
 module.exports = withBundleAnalyzer({
   poweredByHeader: false,
   trailingSlash: true,
-  assetPrefix: assetPrefix,
-  basePath: basePath,
+  assetPrefix,
+  basePath,
   env: {
-    baseUrl,
+    basePath,
   },
   images: {
     loader: 'akamai',
-    path: '',
+    path: basePath,
   },
   // The starter code load resources from `public` folder with `router.basePath` in React components.
   // So, the source code is "basePath-ready".
